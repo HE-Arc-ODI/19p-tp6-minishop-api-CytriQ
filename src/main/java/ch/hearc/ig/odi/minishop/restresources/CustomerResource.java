@@ -54,6 +54,16 @@ public class CustomerResource {
     return persistenceService.createAndPersistCustomer(username,firstname,lastname,email,phone);
   }
 
-
+  @PUT
+  @Path("{id}")
+  @Consumes(MediaType.APPLICATION_JSON)
+  public Customer updateCustomer(@PathParam("id") Long id, Customer customer) {
+    try {
+      return persistenceService.updateCustomer(id, customer);
+    } catch (CustomerException e) {
+      e.printStackTrace();
+      throw new NullFormException("customer couldn't have been updated.");
+    }
+  }
 }
 
