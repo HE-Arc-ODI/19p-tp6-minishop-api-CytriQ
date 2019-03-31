@@ -49,6 +49,11 @@ public class CustomerResource {
     }
   }
 
+  @POST
+  public Customer customerPost(@FormParam("username") String username, @FormParam("firstname") String firstname, @FormParam("lastname") String lastname, @FormParam("email") String email, @FormParam("phone") String phone) throws ParseException, CustomerException {
+    return persistenceService.createAndPersistCustomer(username,firstname,lastname,email,phone);
+  }
+
 
 }
 
