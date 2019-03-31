@@ -38,5 +38,17 @@ public class CustomerResource {
     return persistenceService.getAllCustomers();
   }
 
+  @GET
+  @Path("{id}")
+  public Customer customerIdGet(@PathParam("id") Long customerid) {
+    try {
+      return persistenceService.getCustomerByID(customerid);
+    } catch (CustomerException e) {
+      e.printStackTrace();
+      throw new NotFoundException("the customer does not exist");
+    }
+  }
+
+
 }
 
